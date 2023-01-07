@@ -1,14 +1,19 @@
 const int redPin = 9;
 const int bluePin = 10;
 const int greenPin = 11;
+const int buttonPin = 2;
 
 void setup() {
   pinMode(redPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
   pinMode(greenPin, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLUP);
 }
 
 void loop() {
+  // Wait for button press
+  while (digitalRead(buttonPin) == HIGH) {}
+
   // Generate a random number between 0 and 99
   int randNumber = random(100);
 
@@ -29,5 +34,6 @@ void loop() {
     digitalWrite(greenPin, LOW);
   }
 
-  delay(1000);
+  // Wait for button release
+  while (digitalRead(buttonPin) == LOW) {}
 }
